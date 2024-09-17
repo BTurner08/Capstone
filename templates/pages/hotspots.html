@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Hot Spots{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/hotspots.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="video-background">
+   <video muted autoplay loop>
+        <source src="{% static 'video/stars.mp4' %}" />
+    </video>
+</div>
+
+<div id="flipbook" class="center-book">
+    <div class="page hard">
+        <button id="btn-start" class="btn btn-lg btn-primary start-button">Click to start</button>
+        <img src="{% static 'imgs/cover.jpg' %}" alt="Cover Image"
+            style="width: 100%; height: 100%;">Cover Page</div>
+    <div class="page"><img src="{% static 'imgs/page1.jpg' %}" alt="Cover Image" style="width: 100%; height: 100%;">Page
+        1</div>
+    <div class="page"><img src="{% static 'imgs/page2.jpg' %}" alt="Cover Image" style="width: 100%; height: 100%;">Page
+        2</div>
+    <div class="page"><img src="{% static 'imgs/page3.jpg' %}" alt="Cover Image" style="width: 100%; height: 100%;">Page
+        3</div>
+    <div class="page"><img src="{% static 'imgs/page4.jpg' %}" alt="Cover Image" style="width: 100%; height: 100%;">Page
+        4</div>
+    <div class="page"><img src="{% static 'imgs/page5.jpg' %}" alt="Cover Image" style="width: 100%; height: 100%;">Page
+        5</div>
+    <div class="page hard"><img src="{% static 'imgs/backcover.jpg' %}" alt="Cover Image"
+            style="width: 100%; height: 100%;">Back Cover</div>
+</div>
+
+{% endblock %}
+
+
+
+{% block js %}
+
+<script src="{% static '/js/turn.js' %}"></script>
+<script src="{% static '/js/hotspots.js' %}"></script>
+
+
+{% endblock %}

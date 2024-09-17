@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Account{% endblock title %}
+
+{% block content %}
+<div>
+    <h3>Update your public profile</h3>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button class="btn btn-primary">Update Profile</button>
+    </form>
+</div>
+{% endblock %}

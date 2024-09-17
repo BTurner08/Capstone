@@ -1,0 +1,13 @@
+.navbar {
+    background-color: #A1E8CC;
+}
+
+body, html {
+    height: 100%;
+}
+
+.page-container {
+    min-height: calc(100vh - 113px);
+    padding: 0 !important;
+    overflow: hidden;
+}
