@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Hot Spots{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/home.css' %}">
+<link rel="stylesheet" href="{% static '/css/tickets.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+{% endblock %}
+
+{% block content %}
+
+{% for destination in destinations %}
+<div id="map" style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
+
+<div class="container mt-5"></div>
+    <h2 class="text-center mb-4">Unforgettable experiences await - let's plan your perfect escape</h2>
+    <div class="row row-cols-1 row-cols-md-3 mx-2">
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'imgs/bali.jpg' %}" class="card-img-top" alt="Destination 1">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Bali, Indonesia</h5>
+                    <p class="card-text">Experience the perfect blend of culture and relaxation.</p>
+                    <a href="#" class="btn btn-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'imgs/paris.jpg' %}" class="card-img-top" alt="Destination 2">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Paris, France</h5>
+                    <p class="card-text">Discover the city of love and its iconic landmarks.</p>
+                    <a href="#" class="btn btn-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'imgs/machu.jpg' %}" class="card-img-top" alt="Destination 3">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Machu Picchu, Peru</h5>
+                    <p class="card-text">Explore ancient Incan ruins in the Andes Mountains.</p>
+                    <a href="#" class="btn btn-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'imgs/greece.jpg' %}" class="card-img-top" alt="Destination 4">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Santorini, Greece</h5>
+                    <p class="card-text">Enjoy breathtaking sunsets and white-washed architecture.</p>
+                    <a href="#" class="btn btn-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'imgs/japan.jpg' %}" class="card-img-top" alt="Destination 5">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Kyoto, Japan</h5>
+                    <p class="card-text">Immerse yourself in traditional Japanese culture and history.</p>
+                    <a href="#" class="btn btn-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'imgs/italy.jpg' %}" class="card-img-top" alt="Destination 6">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Venice, Italy</h5>
+                    <p class="card-text">Navigate the romantic canals of this unique floating city.</p>
+                    <a href="#" class="btn btn-dark">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize the map
+    var map = L.map('map').setView([20, 0], 2);
+
+    // Set up the Mapbox tile layer
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        maxZoom: 18,
+        id: 'mapbox/streets-v11', // You can change this to other Mapbox styles like 'mapbox/light-v10', 'mapbox/dark-v10', etc.
+        tileSize: 512,
+        zoomOffset: -1,
+        style: 'mapbox://styles/airblake01/cm18n05ma00ol01pdgj2dc3go',
+        accessToken: 'pk.eyJ1IjoiYWlyYmxha2UwMSIsImEiOiJjbTE4bWxlb2QxOGEzMmpweDF3Y2k5bmtnIn0.iwniottSE4cZkJjoKmG-kA' // Your Mapbox token
+    }).addTo(map);
+
+    // Define the destinations
+    var destinations = [
+        {name: "Bali, Indonesia", coords: [-8.3405, 115.0920]},
+        {name: "Paris, France", coords: [48.8566, 2.3522]},
+        {name: "Machu Picchu, Peru", coords: [-13.1631, -72.5450]},
+        {name: "Santorini, Greece", coords: [36.3932, 25.4615]},
+        {name: "Kyoto, Japan", coords: [35.0116, 135.7681]},
+        {name: "Venice, Italy", coords: [45.4408, 12.3155]}
+    ];
+
+    // Add markers to the map
+    destinations.forEach(function(dest) {
+        L.marker(dest.coords)
+            .addTo(map)
+            .bindPopup('<b>' + dest.name + '</b><br><button onclick="showPackage(\'' + dest.name + '\')">View Package</button>');
+    });
+
+    // Function to handle package display
+    function showPackage(destination) {
+        alert("Showing package for " + destination);
+        // Here you would typically trigger your package display logic
+    }
+</script>
+{% endfor %}
+
+
+{% endblock %}
+
+
+
+{% block js %}
+
+
+{% endblock %}

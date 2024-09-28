@@ -12,6 +12,8 @@ class Profile(models.Model):
     address_zipcode = models.CharField(max_length=12)
     
     bio = models.TextField()
-    
+
     def __str__(self):
         return self.user.username
+    
+    

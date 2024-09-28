@@ -1,0 +1,11 @@
+.container.mt-5{
+    border: solid 2px #A1E8CC;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+h2 {
+    text-align: center;
+}
+button {
+width: 150px;
+}

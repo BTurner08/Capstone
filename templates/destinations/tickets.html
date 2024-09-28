@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Book Below!{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/ticketform.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Ticket Payment Form</h2>
+    <form>
+        <div class="mb-3">
+            <label for="fullName" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="fullName" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="destinationSelect" class="form-label">Destination</label>
+            <select class="form-select" id="destinationSelect">
+                <option value="" selected disabled>Choose a destination</option>
+                <option value="1" data-price="1900.00">Venice, Italy</option>
+                <option value="2" data-price="1300.00">Kyoto, Japan</option>
+                <option value="3" data-price="1600.00">Santorini, Greece</option>
+                <option value="4" data-price="1500.00">Machu Picchu, Peru</option>
+                <option value="5" data-price="1100.00">Paris, France</option>
+                <option value="6" data-price="1200.00">Bali Indonesia</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="travelDate" class="form-label">Travel Date</label>
+            <input type="date" class="form-control" id="travelDate" required>
+        </div>
+        <div class="mb-3">
+            <label for="ticketQuantity" class="form-label">Number of Tickets</label>
+            <input type="number" class="form-control" id="ticketQuantity" min="1" value="1">
+        </div>
+        <div class="mb-3">
+            <label for="cardNumber" class="form-label">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" required>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="expirationDate" class="form-label">Expiration Date</label>
+                <input type="text" class="form-control" id="expirationDate" placeholder="MM/YY" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="cvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cvv" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="totalPrice" class="form-label">Total Price</label>
+            <input type="text" class="form-control" id="totalPrice" readonly>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Pay Now</button>
+          </div>
+    </form>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const destinationSelect = document.getElementById('destinationSelect');
+        const ticketQuantity = document.getElementById('ticketQuantity');
+        const totalPrice = document.getElementById('totalPrice');
+
+        function updatePrice() {
+            const selectedOption = destinationSelect.options[destinationSelect.selectedIndex];
+            const price = selectedOption.dataset.price;
+            const quantity = ticketQuantity.value;
+            
+            if (price && quantity) {
+                const total = price * quantity;
+                totalPrice.value = `$${total}`;
+            } else {
+                totalPrice.value = '';
+            }
+        }
+
+        destinationSelect.addEventListener('change', updatePrice);
+        ticketQuantity.addEventListener('input', updatePrice);
+
+        // Optional: Form submission handling
+        document.getElementById('destinationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const destination = destinationSelect.options[destinationSelect.selectedIndex].text;
+            const quantity = ticketQuantity.value;
+            const price = totalPrice.value;
+            alert(`Booking confirmed!\nDestination: ${destination}\nTickets: ${quantity}\nTotal: ${price}`);
+        });
+    });
+    </script>
+{% endblock %}

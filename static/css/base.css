@@ -11,3 +11,11 @@ body, html {
     padding: 0 !important;
     overflow: hidden;
 }
+
+.banner img{
+    background-image: url('destinations.image.url');
+    background-size: cover;
+    background-position: center;
+    height: 700px; /* Adjust height for your banner */
+    width: 100%;
+}

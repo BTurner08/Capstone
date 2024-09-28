@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title%}Destination details{% endblock %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/details.css' %}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for dest_image in destinations.images.all %}
+                        <div class="{% if forloop.first %}carousel-item active{% else %}carousel-item{% endif %}">
+                        
+                            <img src="{{dest_image.image.url}}" class="d-block w-100" alt="Tropical Beach">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </div>
+                    {% endfor %}   
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <div>
+        <h3>{{destinations.title}}</h3>
+        <hr>
+
+        <p>
+
+        </p>
+    </div>
+</div>
+
+<p>{{destinations.description}} <a href="{% url 'destination_tickets' destinations.id %}" class="btn btn-dark">Purchase Tickets Here!</a></p>
+
+{% endblock %}
