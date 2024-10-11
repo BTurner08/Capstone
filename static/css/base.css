@@ -1,21 +1,90 @@
-.navbar {
-    background-color: #A1E8CC;
-}
-
 body, html {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.navbar {
+    background-color: #A1E8CC;
 }
 
 .page-container {
     min-height: calc(100vh - 113px);
     padding: 0 !important;
     overflow: hidden;
+    width: 100%;
 }
 
-.banner img{
+.banner img {
     background-image: url('destinations.image.url');
     background-size: cover;
     background-position: center;
-    height: 700px; /* Adjust height for your banner */
+    height: 700px;
     width: 100%;
+}
+
+.contact-info {
+    background-color: #A1E8CC;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+.contact-info h3 {
+    color: white;
+}
+.contact-info i {
+    margin-right: 10px;
+}
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    nav ul li {
+        margin-bottom: 0;
+    }
+
+    .contact-info {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 970px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+    }
+    .contact-info {
+        padding-bottom: 30px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1170px;
+    }
+
+    .contact-info {
+        padding-bottom: 30px;
+    }
 }

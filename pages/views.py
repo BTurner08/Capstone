@@ -30,3 +30,9 @@ class TicketView(View):
     def get(self, request):
         all_destinations = Destination.objects.all()
         return render(request, self.template_name, {"destinations": all_destinations})
+
+class AboutView(View):
+    template_name = "pages/about.html"
+    
+    def get(self, request):
+        return render(request, self.template_name)
